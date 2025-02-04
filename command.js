@@ -18,17 +18,19 @@ module.exports = (client, msg) => {
 ╰────✧ 𝗠𝗔𝗛𝗜𝗬𝗔__𝗠𝗗 ✧────◆
 `;
 
+        const menuImage = "https://i.ibb.co/Xr29V5bn/4b355f8309ae5bca.jpg"; // Image URL for menu
+
+        // First send the menu message
         msg.reply(menuMessage);
+
+        // Then send the image
+        client.sendMessage(msg.from, { media: { url: menuImage } });
     }
 
     if (msg.body === "!alive") {
         const aliveMessage = process.env.ALIVE_MSG || "✨ 𝙄 𝙖𝙢 𝙖𝙡𝙞𝙫𝙚 𝙖𝙣𝙙 𝙧𝙪𝙣𝙣𝙞𝙣𝙜! 🚀";
-        const aliveImage = process.env.ALIVE_IMG;
+        const aliveImage = "https://i.ibb.co/Xr29V5bn/4b355f8309ae5bca.jpg"; // Image URL for alive
 
-        if (aliveImage) {
-            client.sendMessage(msg.from, aliveMessage, { media: { url: aliveImage } });
-        } else {
-            msg.reply(aliveMessage);
-        }
+        client.sendMessage(msg.from, aliveMessage, { media: { url: aliveImage } });
     }
 };

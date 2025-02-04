@@ -4,7 +4,8 @@
   "description": "A WhatsApp bot that auto-views and saves statuses.",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js --start",
+    "reset-auth": "node bot.js --reset-auth"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^7.0.0",

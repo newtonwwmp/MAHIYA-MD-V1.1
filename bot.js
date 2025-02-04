@@ -2,7 +2,22 @@ const { default: makeWASocket, useMultiFileAuthState, downloadContentFromMessage
 const fs = require('fs');
 const path = require('path');
 
+// CLI Arguments Handling
+const args = process.argv.slice(2);
+const COMMANDS = {
+    START: '--start',
+    RESET_AUTH: '--reset-auth'
+};
+
 (async () => {
+    if (args.includes(COMMANDS.RESET_AUTH)) {
+        console.log('Resetting authentication...');
+        fs.rmSync('auth', { recursive: true, force: true });
+        console.log('Authentication reset. Restart the bot and scan the QR code again.');
+        process.exit(0);
+    }
+
+    console.log('Starting WhatsApp Bot...');
     const { state, saveCreds } = await useMultiFileAuthState('auth');
     const sock = makeWASocket({ auth: state });
 
